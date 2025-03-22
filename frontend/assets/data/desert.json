@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Chocolate Delight",
+    "flavor": "Chocolate",
+    "price": 120,
+    "size": "Medium",
+    "description": "Rich and creamy chocolate ice cream made with premium cocoa.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-chocolate.jpg",
+    "featured": true
+  },
+  {
+    "name": "Classic Vanilla",
+    "flavor": "Vanilla",
+    "price": 100,
+    "size": "Medium",
+    "description": "Smooth and creamy vanilla ice cream with a touch of real vanilla beans.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-vanilla.jpg",
+    "featured": true
+  },
+  {
+    "name": "Strawberry Bliss",
+    "flavor": "Strawberry",
+    "price": 110,
+    "size": "Medium",
+    "description": "Fresh strawberry-flavored ice cream with real fruit chunks.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-strawberry.jpg",
+    "featured": true
+  },
+  {
+    "name": "Mango Magic",
+    "flavor": "Mango",
+    "price": 130,
+    "size": "Medium",
+    "description": "Tropical mango-flavored ice cream with a smooth, fruity taste.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-mango.jpg",
+    "featured": true
+  },
+  {
+    "name": "Butterscotch Crunch",
+    "flavor": "Butterscotch",
+    "price": 125,
+    "size": "Medium",
+    "description": "Delicious butterscotch ice cream with crunchy caramel bits.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-butterscotch.jpg",
+    "featured": false
+  },
+  {
+    "name": "Cookies & Cream",
+    "flavor": "Cookies & Cream",
+    "price": 140,
+    "size": "Large",
+    "description": "A perfect blend of vanilla ice cream and chocolate cookie pieces.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-cookiescream.jpg",
+    "featured": false
+  },
+  {
+    "name": "Pistachio Dream",
+    "flavor": "Pistachio",
+    "price": 150,
+    "size": "Large",
+    "description": "Smooth pistachio ice cream with crunchy nut toppings.",
+    "reviews": [],
+    "photo": "/icecream-images/icecream-pistachio.jpg",
+    "featured": false
+  }
+]
