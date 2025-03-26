@@ -1,0 +1,100 @@
+
+
+
+.desert__img img{
+    width: 300px;
+    border-radius: 5px 5px 0 0;
+    height:400px;
+    object-fit: cover;
+}
+
+.card{
+    border: none !important;
+    box-shadow: rgba(0,0 ,0 ,0.2) 0px 18px 50px -10px;
+}
+
+.desert__img{
+    position: relative;
+}
+
+.desert__img span{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    z-index: 10;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px 0 0 0;
+}
+
+.card__top span i{
+    color: var(--secondary-color);
+}
+
+.desert__rating{
+    font-size: .9rem;
+    color: var(--text-color);
+}
+
+.desert__flavor{
+    color: var(--heading-color);
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+.desert__rating i,
+.desert__flavor i{
+    font-size: 1rem;
+}
+
+
+.desert__title{
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.desert__title a{
+    text-decoration: none;
+    color: var(--heading-color);
+    transition: .3s;
+}
+
+.desert__title a:hover{
+    color: var(--secondary-color);
+}
+
+
+.card__bottom h5{
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+
+.card__bottom h5 span{
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.8rem;
+}
+
+.booking__btn{
+    background: var(--secondary-color) !important;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem !important;
+    outline: none;
+}
+
+.booking__btn a{
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #fff;
+    outline: none;
+}
+
+.booking__btn a:hover{
+    color: #fff;
+}
