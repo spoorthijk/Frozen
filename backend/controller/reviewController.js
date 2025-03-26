@@ -1,21 +1,27 @@
+// backend/controller/reviewController.js
 import Desert from "../models/Desert.js";
 import Review from "../models/Review.js";
 
 export const createReview = async (req, res) => {
   const desertId = req.params.desertId;
+  const { comment, rating } = req.body; // Expecting a comment and rating from the client
+
+  // Create a new review instance.
   const newReview = new Review({
-    ...req.body,
+    comment,
+    rating,
     desert: desertId,
-    user: req.user.id, // Assuming you have user information from the token
+    // Use either req.user._id or req.user.id depending on your token payload structure.
+    user: req.user._id || req.user.id,
   });
 
   try {
     const savedReview = await newReview.save();
 
-    // After creating a review, now update the reviews array in the desert model
+    // Update the corresponding desert by pushing the new review into its reviews array.
     await Desert.findByIdAndUpdate(
       desertId,
-      { $push: { reviews: savedReview._id } },
+      { $push: { reviews: savedReview } },
       { new: true }
     );
 

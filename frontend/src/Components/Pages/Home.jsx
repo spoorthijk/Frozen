@@ -17,9 +17,10 @@ import Testimonials from '../Testimonial/Testimonials'
 import Newsletter from '../../Shared/NewsLetter'
 
 const Home = () => {
-  return (<>
+  return (
+  <div >
 {/* ===========hero section start============= */}
-    <section>
+    <section style={{marginTop:'20px'}}>
       <Container>
         <Row>
           <Col lg='6'>
@@ -61,7 +62,7 @@ const Home = () => {
             <img src= {heroImg02} alt="" />
           </div>
           </Col>
-          <SearchBar/>
+          {/* <SearchBar/> */}
         </Row>
       </Container>
     </section>
@@ -78,8 +79,8 @@ const Home = () => {
       </Container>
       </section>
 
-          {/* ============featured tour section start=============== */}
-            <section>
+      {/* ============featured tour section start=============== */}
+      <section>
         <Container>
           <Row>
             <Col lg='12' className='mb-5'>
@@ -130,8 +131,8 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+      
       {/* ============ experience section start ================ */}
-
       {/* ============= gallery section starts================== */}
       
       <section>
@@ -151,8 +152,6 @@ const Home = () => {
       </section>
 
       {/* ============= gallery section end ================== */}
-
-
       {/* =============== testimonial section strat ================== */}
 
       <section>
@@ -171,7 +170,7 @@ const Home = () => {
 
         {/* =============== testimonial section end ================== */}
         <Newsletter/>
-      </>
+      </div>
   )
 }
 

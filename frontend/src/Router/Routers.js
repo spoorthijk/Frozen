@@ -11,6 +11,7 @@ import ThankYou from '../Components/Pages/ThankYou';
 import AdminDesertPage from '../Components/admin/pages/AdminDesertPage';
 import MainMenu from '../Components/MainMenu';
 import Ordering from '../Components/Ordering/Ordering';
+import Dashboard from '../Components/user/Dashboard';
 
 
 const Routers = () => {
@@ -28,6 +29,7 @@ const Routers = () => {
       <Route path="/thank-you" element={<ThankYou />} /> 
       <Route path="/api/admin" element={<AdminDesertPage />} /> 
       <Route path="/order/:id" element={<Ordering />} /> 
+      <Route path="/dashboard/*" element={<Dashboard />} />
     </Routes>
   )
 }

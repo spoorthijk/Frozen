@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./search-bar.css";
 import { Col, Form, FormGroup, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,17 +8,20 @@ const flavors = ["Vanilla", "Chocolate", "Strawberry", "Mango", "Butterscotch"];
 const toppings = ["Choco Chips", "Sprinkles", "Nuts", "Caramel", "Fudge"];
 const sizes = ["Small", "Medium", "Large"];
 
-const SearchBar = () => {
-  const [selectedFlavor, setSelectedFlavor] = useState("");
-  const [selectedToppings, setSelectedToppings] = useState([]);
-  const [selectedSize, setSelectedSize] = useState("");
-
+const SearchBar = ({
+  selectedFlavor,
+  setSelectedFlavor,
+  selectedToppings,
+  setSelectedToppings,
+  selectedSize,
+  setSelectedSize,
+  handleSearch,
+}) => {
   const handleToppingChange = (topping) => {
-    setSelectedToppings((prevToppings) =>
-      prevToppings.includes(topping)
-        ? prevToppings.filter((t) => t !== topping)
-        : [...prevToppings, topping]
-    );
+    const newToppings = selectedToppings.includes(topping)
+      ? selectedToppings.filter((t) => t !== topping)
+      : [...selectedToppings, topping];
+    setSelectedToppings(newToppings);
   };
 
   const searchHandler = () => {
@@ -26,15 +29,16 @@ const SearchBar = () => {
       alert("Please select all options!");
       return;
     }
-    alert(
-      `Your Ice Cream Order: ${selectedFlavor} with ${selectedToppings.join(", ")} in ${selectedSize} size.`
-    );
+    const orderSummary = `Your Ice Cream Order: ${selectedFlavor} with ${selectedToppings.join(
+      ", "
+    )} in ${selectedSize} size.`;
+    handleSearch(orderSummary);
   };
 
   return (
     <Col lg="12">
       <div className="search__bar">
-        <Form className="d-flex align-items-center gap-4">
+        <Form className="form-div d-flex align-items-center gap-4 flex-wrap">
           {/* Flavor Selection */}
           <FormGroup className="d-flex gap-3 form__group">
             <span>
@@ -42,7 +46,10 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Flavor</h6>
-              <select value={selectedFlavor} onChange={(e) => setSelectedFlavor(e.target.value)}>
+              <select
+                value={selectedFlavor}
+                onChange={(e) => setSelectedFlavor(e.target.value)}
+              >
                 <option value="">Select Flavor</option>
                 {flavors.map((flavor, index) => (
                   <option key={index} value={flavor}>

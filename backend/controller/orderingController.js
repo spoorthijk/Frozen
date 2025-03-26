@@ -21,3 +21,22 @@ export const createBooking = async (req, res) => {
     });
   }
 };
+
+export const getUserBookings = async (req, res) => {
+  try {
+    // Assuming verifyUser middleware attaches the user data to req.user
+    const userId = req.user.id; 
+    const bookings = await Booking.find({ userId });
+    res.status(200).json({
+      success: true,
+      data: bookings,
+    });
+  } catch (error) {
+    console.error('Error retrieving user bookings:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving bookings',
+      error: error.message,
+    });
+  }
+};

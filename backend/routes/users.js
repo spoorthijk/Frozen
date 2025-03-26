@@ -9,13 +9,13 @@ import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
 router.post('/', createUser);
 
 // update a route for /user
-router.put('/:id', verifyUser,updateUser);
+router.put('/:id', updateUser);
 
 // delete a route for /user
 router.delete('/:id',verifyUser, deleteUser);
 
 // get single a route for /user
-router.get('/:id',verifyUser, getSingleUser);
+router.get('/:id', getSingleUser);
 
 // get all route for /user
 router.get('/',verifyAdmin, getAllUsers);

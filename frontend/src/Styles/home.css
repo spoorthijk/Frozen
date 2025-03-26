@@ -6,7 +6,7 @@
 .hero__content h1{
     font-size: 3.2rem;
     font-weight: 600;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     color: var(--heading-color);
 }
