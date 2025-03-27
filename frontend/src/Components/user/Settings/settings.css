@@ -1,14 +1,14 @@
 /* advanced-settings.css */
-/* :root {
-    --primary-color: #007BFF;
-    --secondary-color: #f9f9f9;
+:root {
+    --prima-color: #ff8800;
+    --second-color: #f9f9f9;
     --background-color: #ffffff;
-    --text-color: #333333;
+    --text-color: #252525;
     --error-color: #d8000c;
     --border-radius: 10px;
     --transition-duration: 0.3s;
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  } */
+  }
   
   .settings-section {
     max-width: 600px;
@@ -56,7 +56,7 @@
     font-size: 1rem;
     border: 2px solid #e0e0e0;
     border-radius: var(--border-radius);
-    background: var(--secondary-color);
+    background: var(--second-color);
     color: var(--text-color);
     transition: border-color var(--transition-duration), background var(--transition-duration);
   }
@@ -64,14 +64,14 @@
   /* Focus effect instead of hover */
   .settings-section input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--prima-color);
     background: var(--background-color);
   }
   
   .settings-section button {
     padding: 1rem;
     font-size: 1rem;
-    background-color: var(--primary-color);
+    background-color: var(--prima-color);
     color: #ffffff;
     border: none;
     border-radius: var(--border-radius);
@@ -82,7 +82,7 @@
   /* Focus state for button */
   .settings-section button:focus {
     outline: none;
-    background-color: var(--primary-color);
+    background-color: var(--prima-color);
     transform: scale(0.98);
   }
   

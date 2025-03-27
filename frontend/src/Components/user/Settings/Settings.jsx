@@ -9,12 +9,14 @@ const Settings = () => {
   const token = localStorage.getItem('token');
   const userId = token ? jwtDecode(token).id : null;
 
+  console.log(userId)
+
   // State for user details and feedback message.
   const [userData, setUserData] = useState({
-    name: '',
+    username: '',
     email: '',
-    // Add other fields as needed.
   });
+  
   const [message, setMessage] = useState('');
 
   // Fetch current user data on component mount.
@@ -24,10 +26,9 @@ const Settings = () => {
         .get(`http://localhost:8000/api/v1/users/${userId}`)
         .then(response => {
           setUserData({
-            name: response.data.data.username || '',
+            username: response.data.data.username || '',
             email: response.data.data.email || '',
-            // Update additional fields accordingly.
-          });
+          });          
         })
         .catch(error => {
           setMessage('Error fetching user data');
@@ -68,8 +69,8 @@ const Settings = () => {
           <label>Name:</label>
           <input 
             type="text"
-            name="name"
-            value={userData.name}
+            name="username"  // Changed from "name" to "username"
+            value={userData.username}
             onChange={handleChange}
             required
           />

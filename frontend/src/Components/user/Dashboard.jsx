@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 import './dashboard.css';
 import Profile from './Profile/Profile';
@@ -8,6 +8,7 @@ import Settings from './Settings/Settings';
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('bookings');
   const [bookings, setBookings] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -40,6 +41,19 @@ const Dashboard = () => {
     }
   }, [activeTab]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login"; // Adjust the URL as needed.
+  };
+
+  const confirmLogout = () => {
+    setShowModal(true);
+  };
+
+  const cancelLogout = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
@@ -68,6 +82,9 @@ const Dashboard = () => {
             </li>
           </ul>
         </nav>
+        <div className="logout-container">
+          <button onClick={confirmLogout} className="btn logout-btn">Logout</button>
+        </div>
       </aside>
       <main className="dashboard-content">
         {activeTab === 'bookings' && (
@@ -76,8 +93,6 @@ const Dashboard = () => {
             <table className="bookings-table">
               <thead>
                 <tr>
-                  {/* <th>ID</th> */}
-                  {/* <th>User ID</th> */}
                   <th>User Email</th>
                   <th>Dessert</th>
                   <th>Full Name</th>
@@ -93,8 +108,6 @@ const Dashboard = () => {
                 {bookings.length > 0 ? (
                   bookings.map(booking => (
                     <tr key={booking._id}>
-                      {/* <td>{booking._id}</td> */}
-                      {/* <td>{booking.userId}</td> */}
                       <td>{booking.userEmail}</td>
                       <td>{booking.desertName}</td>
                       <td>{booking.fullName}</td>
@@ -108,7 +121,7 @@ const Dashboard = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="11">No bookings found.</td>
+                    <td colSpan="9">No bookings found.</td>
                   </tr>
                 )}
               </tbody>
@@ -118,6 +131,19 @@ const Dashboard = () => {
         {activeTab === 'profile' && <Profile />}
         {activeTab === 'settings' && <Settings />}
       </main>
+
+      {showModal && (
+       <div className={`modal-overlays ${showModal ? "show" : ""}`}>
+          <div className="modal-contents">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+            <div className="modal-actions">
+              <button onClick={handleLogout} className="btn confirm-btn">Yes</button>
+              <button onClick={cancelLogout} className="btn cancel-btn">No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

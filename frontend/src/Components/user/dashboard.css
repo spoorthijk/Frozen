@@ -7,8 +7,8 @@
   
   /* Sidebar Styling */
   .sidebar {
-    background: #2c3e50;
-    color: #ecf0f1;
+    /* background: #ffd2ad67; */
+    color: #000000;
     min-width: 250px;
     padding: 20px;
     display: flex;
@@ -19,7 +19,7 @@
     margin: 0;
     text-align: center;
     padding-bottom: 20px;
-    border-bottom: 1px solid #34495e;
+    border-bottom: 1px solid #5e4834;
   }
   
   .sidebar-nav ul {
@@ -37,7 +37,7 @@
   
   .sidebar-nav li:hover,
   .sidebar-nav li.active {
-    background: #34495e;
+    background: #ffa974;
   }
   
   /* Main Content Styling */
@@ -50,7 +50,7 @@
   
   .dashboard-content h2 {
     margin-bottom: 20px;
-    color: #2c3e50;
+    color: #50402c;
   }
   
   /* Bookings Table Styling */
@@ -164,3 +164,86 @@
     }
   }
   
+  /* Modal Overlay */
+.modal-overlays {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.233);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlays.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Content */
+.modal-contents {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.477);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlays.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-contents h3 {
+  margin-top: 0;
+  color: #50402c;
+}
+
+.modal-contents p {
+  margin: 20px 0;
+  color: #333;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.confirm-btn {
+  background: #e74c3c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background: #c0392b;
+}
+
+.cancel-btn {
+  background: #95a5a6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancel-btn:hover {
+  /* background: #7f8c8d; */
+}

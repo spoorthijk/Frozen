@@ -3,42 +3,57 @@ import './ordering.css';
 import { Form, FormGroup, Button, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'remixicon/fonts/remixicon.css';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import PaymentModal from './PaymentModal';
 
 const Ordering = ({ desert, avgRating }) => {
   const navigate = useNavigate();
   const { price, reviews, _id: desertId, name: desertName } = desert;
 
-  // Function to decode token and extract the user ID.
-  const getUserIdFromToken = () => {
+  // Function to decode token and extract user data.
+  const getUserDataFromToken = () => {
     const token = localStorage.getItem('token');
-    if (!token || token === 'undefined') return '';
+    if (!token || token === 'undefined') return {};
     try {
       const decoded = jwtDecode(token);
-      return decoded.id || decoded.userId || '';
+      // console.log(decoded,'decoded')
+      // Assuming token structure as described.
+      return {
+        userId: decoded.id || decoded.userId || '',
+        fullName: decoded.username || '',  // Using username as fullName
+        userEmail: decoded.email || '',
+      };
     } catch (error) {
       console.log('Failed to decode token:', error);
-      return '';
+      return {};
     }
   };
 
-  // Set initial credentials including the user ID from the decoded token.
+  // Get initial token values.
+  const tokenData = getUserDataFromToken();
+  // console.log(tokenData.fullName)
+
+  // Set initial credentials including data from the decoded token.
   const [credentials, setCredentials] = useState({
-    userId: getUserIdFromToken(), // using "userId" consistently
-    userEmail: '',
-    fullName: '',
+    userId: tokenData.userId || '',
+    userEmail: tokenData.userEmail || '',
+    fullName: tokenData.fullName || '',
     phone: '',
     quantity: 1,
     orderDate: '',
     orderTime: ''
   });
 
-  // Update userId if token changes or on component mount.
+  console.log(credentials,'credentials')
+
+  // Update token values if token changes or on component mount.
   useEffect(() => {
+    const newTokenData = getUserDataFromToken();
     setCredentials(prev => ({
       ...prev,
-      userId: getUserIdFromToken() // ensure we update "userId", not "userID"
+      userId: newTokenData.userId,
+      userEmail: newTokenData.userEmail,
+      fullName: newTokenData.username,
     }));
   }, []);
 
@@ -129,10 +144,26 @@ const Ordering = ({ desert, avgRating }) => {
         <h5>Information</h5>
         <Form className="ordering__info-form">
           <FormGroup>
-            <input type="text" placeholder="Full Name" id="fullName" required onChange={handleChange} />
+            <input 
+              type="text" 
+              placeholder="Full Name" 
+              id="fullName" 
+              required 
+              onChange={handleChange} 
+              value={credentials.fullName}
+              disabled
+            />
           </FormGroup>
           <FormGroup>
-            <input type="email" placeholder="Email" id="userEmail" required onChange={handleChange} />
+            <input 
+              type="email" 
+              placeholder="Email" 
+              id="userEmail" 
+              required 
+              onChange={handleChange} 
+              value={credentials.userEmail}
+              disabled
+            />
           </FormGroup>
           <FormGroup>
             <input type="number" placeholder="Phone" id="phone" required onChange={handleChange} />
