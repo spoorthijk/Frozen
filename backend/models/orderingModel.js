@@ -4,11 +4,11 @@ const bookingSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    // required: true,
+    required: true,
   },
   userEmail: {
     type: String,
-    // required: true,
+    required: true,
   },
   desertName: {
     type: String,
@@ -16,19 +16,34 @@ const bookingSchema = new mongoose.Schema({
   },
   fullName: {
     type: String,
-    // required: true,
+    required: true,
   },
-  unitSize: {
+  quantity: {
     type: Number,
-    // required: true,
+    required: true,
+  },
+  price:{
+    type: String,
+  },
+  quantity:{
+    type: Number,
+  },
+  serviceFee:{
+    type: String,
+  },
+  totalAmount:{
+    type: String,
   },
   phone: {
     type: String, // Changed to String to accommodate different phone number formats
-    // required: true,
+    required: true,
   },
-  bookAt: {
+  orderDate: {
     type: Date,
-    // required: true,
+    required: true,
+  },
+  orderTime: {
+    type: String,
   },
 }, { timestamps: true });
 

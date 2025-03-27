@@ -2,11 +2,11 @@ import Booking from '../models/orderingModel.js';
 
 export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
-  console.log('New Booking:', newBooking);
+  // console.log('New Booking:', req.body);
 
   try {
     const savedBooking = await newBooking.save();
-    console.log('Saved Booking:', savedBooking);
+    // console.log('Saved Booking:', savedBooking);
     res.status(200).json({
       success: true,
       message: 'Your desert has been booked',
@@ -24,9 +24,10 @@ export const createBooking = async (req, res) => {
 
 export const getUserBookings = async (req, res) => {
   try {
-    // Assuming verifyUser middleware attaches the user data to req.user
-    const userId = req.user.id; 
+    // Retrieve the user ID from the route parameter.
+    const userId = req.params.id;
     const bookings = await Booking.find({ userId });
+    
     res.status(200).json({
       success: true,
       data: bookings,

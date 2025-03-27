@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/",  createBooking); // Protect this route
 
-router.get("/user", getUserBookings);
+router.get("/user/:id", getUserBookings);
 
 export default router;
 // verifyUser,

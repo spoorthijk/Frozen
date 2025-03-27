@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Button } from 'reactstrap'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
@@ -11,12 +11,26 @@ const nav__links = [
 ]
 
 const Header = () => {
-  // This flag determines if the user is logged in.
-  // Replace this with your actual authentication logic.
-  const isLoggedIn = true
-
-  // State for toggling the mobile menu
+  // State for login status based on token validation.
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // State for toggling the mobile menu.
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+
+  // Dummy token validation function. Replace with your actual validation logic.
+  const validateToken = token => {
+    // For example, you might check the token's length, expiry date, or decode it.
+    return token && token.length > 10
+  }
+
+  // useEffect to check for token when the component mounts.
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (validateToken(token)) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+  }, [])
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(prev => !prev)

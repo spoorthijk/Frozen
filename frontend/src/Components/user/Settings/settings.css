@@ -1,5 +1,5 @@
 /* advanced-settings.css */
-:root {
+/* :root {
     --primary-color: #007BFF;
     --secondary-color: #f9f9f9;
     --background-color: #ffffff;
@@ -8,7 +8,7 @@
     --border-radius: 10px;
     --transition-duration: 0.3s;
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
+  } */
   
   .settings-section {
     max-width: 600px;
