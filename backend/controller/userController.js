@@ -22,14 +22,15 @@ export const createUser = async (req, res) => {
 
 // update user
 export const updateUser = async (req, res) => {
-  const Id = req.params._id;
-
-  console.log(Id)
+  const id = req.params.id;
+  const data = req.body;
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(Id, {
-      $set: req.body
-    }, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { $set: data },
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
@@ -37,6 +38,7 @@ export const updateUser = async (req, res) => {
       data: updatedUser
     });
   } catch (error) {
+    console.log(error.message, 'error in the update user');
     res.status(409).json({
       success: false,
       message: "Update failed",
