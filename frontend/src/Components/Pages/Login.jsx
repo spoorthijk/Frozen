@@ -32,6 +32,11 @@ const Login = () => {
         // Save token in localStorage or context if needed
         localStorage.setItem("token", res.data.token);
         toast.success("Login successful");
+        console.log(res.data.message)
+        if(res.data.message === "LoggedIn successfully as Admin") {
+          navigate("/api/admin");
+          return;
+        }
         // Redirect to a protected route/dashboard
         navigate('/');
       } else {

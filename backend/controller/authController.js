@@ -68,7 +68,7 @@ export const login = async (req, res) => {
         sameSite:"lax",
         path:"/"
       });
-      return res.status(200).json({success:true, message:"Login successfull",user:{email:adminUser.email}})
+      return res.status(200).json({success:true, message:"LoggedIn successfully as Admin",token,user:{email:adminUser.email}})
     }
 
     const user = await User.findOne({ email: req.body.email });
