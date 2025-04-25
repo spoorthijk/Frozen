@@ -2,36 +2,24 @@ import React from "react";
 import "./search-bar.css";
 import { Col, Form, FormGroup, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIceCream, faCookieBite, faMugHot, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faIceCream, faMugHot, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const flavors = ["Vanilla", "Chocolate", "Strawberry", "Mango", "Butterscotch"];
-const toppings = ["Choco Chips", "Sprinkles", "Nuts", "Caramel", "Fudge"];
 const sizes = ["Small", "Medium", "Large"];
 
 const SearchBar = ({
   selectedFlavor,
   setSelectedFlavor,
-  selectedToppings,
-  setSelectedToppings,
   selectedSize,
   setSelectedSize,
   handleSearch,
 }) => {
-  const handleToppingChange = (topping) => {
-    const newToppings = selectedToppings.includes(topping)
-      ? selectedToppings.filter((t) => t !== topping)
-      : [...selectedToppings, topping];
-    setSelectedToppings(newToppings);
-  };
-
   const searchHandler = () => {
-    if (!selectedFlavor || selectedToppings.length === 0 || !selectedSize) {
-      alert("Please select all options!");
+    if (!selectedFlavor || !selectedSize) {
+      alert("Please select both flavor and size!");
       return;
     }
-    const orderSummary = `Your Ice Cream Order: ${selectedFlavor} with ${selectedToppings.join(
-      ", "
-    )} in ${selectedSize} size.`;
+    const orderSummary = `Your Ice Cream Order: ${selectedFlavor} in ${selectedSize} size.`;
     handleSearch(orderSummary);
   };
 
@@ -57,29 +45,6 @@ const SearchBar = ({
                   </option>
                 ))}
               </select>
-            </div>
-          </FormGroup>
-
-          {/* Toppings Selection */}
-          <FormGroup className="d-flex gap-3 form__group">
-            <span>
-              <FontAwesomeIcon icon={faCookieBite} />
-            </span>
-            <div>
-              <h6>Toppings</h6>
-              <div className="checkbox-group">
-                {toppings.map((topping, index) => (
-                  <label key={index} className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      value={topping}
-                      checked={selectedToppings.includes(topping)}
-                      onChange={() => handleToppingChange(topping)}
-                    />
-                    {topping}
-                  </label>
-                ))}
-              </div>
             </div>
           </FormGroup>
 

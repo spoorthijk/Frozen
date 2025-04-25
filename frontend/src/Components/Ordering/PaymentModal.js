@@ -27,7 +27,7 @@ const PaymentModal = ({ isOpen, toggle, orderDetails, onPaymentSuccess }) => {
           <p>Total Amount: ₹{orderDetails.totalAmount}</p>
         </div>
         <div className="payment-message" style={{ marginTop: '1rem', textAlign: 'center' }}>
-          <p>Payment module is under development.</p>
+          <p>Receive First, Pay Later</p>
         </div>
       </ModalBody>
       <ModalFooter>

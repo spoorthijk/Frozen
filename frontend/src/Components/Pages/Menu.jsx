@@ -75,7 +75,7 @@ const Menu = () => {
 
   return (
     <>
-      <CommonSection title={"E-Icy Menu – Scoops of Happiness Await!"} />
+      <CommonSection title={"FROZENMAGIC Menu – Scoops of Happiness Await!"} />
       <section>
         <Container>
           <Row className="align-items-center">

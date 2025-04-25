@@ -16,11 +16,9 @@ const Ordering = ({ desert, avgRating }) => {
     if (!token || token === 'undefined') return {};
     try {
       const decoded = jwtDecode(token);
-      // console.log(decoded,'decoded')
-      // Assuming token structure as described.
       return {
         userId: decoded.id || decoded.userId || '',
-        fullName: decoded.username || '',  // Using username as fullName
+        fullName: decoded.username || '',
         userEmail: decoded.email || '',
       };
     } catch (error) {
@@ -31,7 +29,6 @@ const Ordering = ({ desert, avgRating }) => {
 
   // Get initial token values.
   const tokenData = getUserDataFromToken();
-  // console.log(tokenData.fullName)
 
   // Set initial credentials including data from the decoded token.
   const [credentials, setCredentials] = useState({
@@ -44,26 +41,13 @@ const Ordering = ({ desert, avgRating }) => {
     orderTime: ''
   });
 
-  console.log(credentials,'credentials')
-
-  // Update token values if token changes or on component mount.
-  useEffect(() => {
-    const newTokenData = getUserDataFromToken();
-    setCredentials(prev => ({
-      ...prev,
-      userId: newTokenData.userId,
-      userEmail: newTokenData.userEmail,
-      fullName: newTokenData.username,
-    }));
-  }, []);
-
   // State for the login warning modal.
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   // Payment modal state.
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
 
-  // Check if all required fields are filled.
+  // Validate form inputs
   const validateInputs = () => {
     const { userEmail, fullName, phone, quantity, orderDate, orderTime } = credentials;
     return fullName && userEmail && phone && quantity && orderDate && orderTime;
@@ -76,13 +60,17 @@ const Ordering = ({ desert, avgRating }) => {
   const serviceFee = 10;
   const totalAmount = Number(price) * Number(credentials.quantity) + Number(serviceFee);
 
-  // Toggle the payment modal if inputs are valid.
+  // Toggle the payment modal if inputs are valid
   const togglePaymentModal = () => {
-    if (!validateInputs()) return;
+    if (!validateInputs()) {
+      // If inputs are not valid, show login modal or warning
+      setLoginModalOpen(true);
+      return;
+    }
     setPaymentModalOpen(!paymentModalOpen);
   };
 
-  // Prepare order details for the payment modal.
+  // Prepare order details for the payment modal
   const orderDetails = {
     price,
     quantity: credentials.quantity,
@@ -90,10 +78,9 @@ const Ordering = ({ desert, avgRating }) => {
     totalAmount,
   };
 
-  // This function makes the booking API call once payment is confirmed.
+  // This function makes the booking API call once payment is confirmed
   const handleBooking = async () => {
     try {
-      // Add additional order details to the bookingData.
       const bookingData = {
         ...credentials,
         desertId,     // Link order with the desert.
@@ -122,10 +109,10 @@ const Ordering = ({ desert, avgRating }) => {
     }
   };
 
-  // Called when payment is successful.
+  // Called when payment is successful
   const onPaymentSuccess = () => {
-    togglePaymentModal();
-    handleBooking();
+    togglePaymentModal();  // Close the payment modal
+    handleBooking();  // Proceed with booking
   };
 
   return (
